@@ -1,26 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
 
     <title>Crash the Language - Game for Learner</title>
-</head>
-<body>
-    <h1>Crash the Language - Game for Learner</h1>
-    <h4>Click any cards. You have 50 points.</h4>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Crash the Language - Game for Learner</h1>
+      <h4 id="ptCount">Click <button>Start</button> You have 50 points.</h4>
 
-    <div id="container"></div>
+      
+      <!-- <div id="board">
+        <div class="card" id="0">AWESOME</div>
+        <div class="card" id="1">BEAUTIFUL</div>
+        <div class="card" id="2">HAPPPY</div>
+        <div class="card" id="3">SUCCESS</div>
+        <div class="card" id="4">TUYỆT VỜI</div>
+        <div class="card" id="5">XINH ĐẸP</div>
+        <div class="card" id="6">HẠNH PHÚC</div>
+        <div class="card" id="7">THÀNH CÔNG</div>
+      </div> -->
+     
+        <!-- <table class="table table-bordered">
+            <tr>
+              <td class="cards" id="0">AWESOME</td>
+              <td class="cards" id="1">BEAUTIFUL</td>
+              <td class="cards" id="2">HAPPPY</td>
+              <td class="cards" id="3">SUCCESS</td>
+            </tr>
+            <tr>
+              <td class="cards" id="4">TUYỆT VỜI</td>
+              <td class="cards" id="5">XINH ĐẸP</td>
+              <td class="cards" id="6">HẠNH PHÚC</td>
+              <td class="cards" id="7">THÀNH CÔNG</td>
+            </tr>
+          </table> -->
+
+          <table>
+              <tr>
+                  <td class="cards" id="0"></td>
+                  <td class="cards" id="1"></td>
+                  <td class="cards" id="2"></td>
+                  <td class="cards" id="3"></td>
+                  <td class="cards" id="4"></td>
+                  <td class="cards" id="5"></td>
+                  <td class="cards" id="6"></td>
+                  <td class="cards" id="7"></td>
+              </tr>
+          </table>
+
+      <div>
+        Instructions: You have 50 clicks before the game is over. Win is counted
+        when all the cards have been matched
+      </div>
+    </div>
 
     <!-- Everytime a matched card discover, you earn 10pts, everytime a matched card hidden successfully, you loose 1pt. -->
-    <div>Instructions: You have 50 clicks before the game is over. Win is counted when all the cards have been matched</div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+      integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+      crossorigin="anonymous"
+    ></script>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
 
 <!-- Note: Im not so good at clocking, timing, so try to avoid them for now -->
