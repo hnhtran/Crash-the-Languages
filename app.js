@@ -63,9 +63,24 @@ const cardsFill = () => {
   cardsSwap = cardsBack;
 };
 
-let count2 = 0;
 let temp = [];
 let tempId = [];
+console.log(tempId);
+console.log(temp);
+let board = document.getElementById('board')
+// initiate isMatch()
+const match = (temp, tempId) => {
+  if (temp[0] === temp[1]) {
+    // cardsTable[tempId[0]].remove()
+    // cardsTable[tempId[1]].remove()
+    board.append(cardsTable[tempId[0]])
+    board.append(cardsTable[tempId[1]])
+    // board.createElement('tr')
+    console.log(board)
+  }
+};
+
+let count2 = 0;
 const cardClicked = (e) => {
   let cardId = e.target.id;
   // console.log(
@@ -81,23 +96,16 @@ const cardClicked = (e) => {
   // reset that text to cardsBack value
   // temp will be used for if statement (or isMatch())
   // what is isMatch?
-
-  // initiate isMatch()
-  // if (temp[0] === temp[1]) {
-  //   cardsTable[tempId[0]].removeEventListener("click", cardClicked)
-  //   cardsTable[tempId[1]].removeEventListener("click", cardClicked)
-  //   temp = []
-  //   tempId =[]
-  // }
-
+  // match(temp, tempId)
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
+    cardsTable[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
     console.log(tempId);
     console.log(temp);
     cardsTable[cardId].innerText = cardsSwap[cardId];
-    cardsTable[cardId].style = `background-color: pink;`;
+    
     // console.log(temp);
 
     for (let i = 0; i < cardsTable.length; i++) {
@@ -110,13 +118,18 @@ const cardClicked = (e) => {
       cardsSwap = shuffledCards;
     }
 
-    // console.log(cardsBack)
     cardsTable[cardId].removeEventListener("click", cardClicked);
-    // console.log(cardsBack);
+    console.log(cardsTable[tempId[0]])
+    console.log(cardsTable[cardId])
     count2++;
   } else {
+    match(temp, tempId)
     count2 = 0;
     cardsTable.innerText = shuffledCards;
+    temp = []
+    tempId = []
+    console.log(tempId);
+    console.log(temp);
 
     //reset the colors back to neutral
     for (let i = 0; i < cardsTable.length; i++) {
@@ -135,4 +148,7 @@ start.addEventListener("click", cardsFill);
 //eventListener for every box in the table
 cardsTable.forEach((card) => {
   card.addEventListener("click", cardClicked);
+  // Match(temp, tempId)
 });
+
+
