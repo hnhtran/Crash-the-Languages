@@ -64,13 +64,13 @@ const cardsFill = () => {
 };
 
 let count2 = 0;
-let temp = []
-let tempId = []
+let temp = [];
+let tempId = [];
 const cardClicked = (e) => {
   let cardId = e.target.id;
-  console.log(
-    `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
-  ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
+  // console.log(
+  //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
+  // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
 
   // console.log(`${cardsBack} Back of the cards was called `);
   // console.log(`${shuffledCards} First display cards when Start button pressed`);
@@ -83,12 +83,19 @@ const cardClicked = (e) => {
   // what is isMatch?
 
   // initiate isMatch()
+  // if (temp[0] === temp[1]) {
+  //   cardsTable[tempId[0]].removeEventListener("click", cardClicked)
+  //   cardsTable[tempId[1]].removeEventListener("click", cardClicked)
+  //   temp = []
+  //   tempId =[]
+  // }
 
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
     temp[count2] = cardsTable[cardId].innerText;
-    tempId[count2] = cardId
-    console.log(tempId)
+    tempId[count2] = cardId;
+    console.log(tempId);
+    console.log(temp);
     cardsTable[cardId].innerText = cardsSwap[cardId];
     cardsTable[cardId].style = `background-color: pink;`;
     // console.log(temp);
@@ -120,7 +127,6 @@ const cardClicked = (e) => {
       card.addEventListener("click", cardClicked);
     });
   }
-  console.log(count2);
 };
 
 // start button is pressed
@@ -130,8 +136,3 @@ start.addEventListener("click", cardsFill);
 cardsTable.forEach((card) => {
   card.addEventListener("click", cardClicked);
 });
-
-// const cardClicked = (e) => {
-//     let id = e.target.id
-//     cardsTable[id].innerText =
-// }
