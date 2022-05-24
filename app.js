@@ -63,6 +63,10 @@ const cardsFill = () => {
   cardsSwap = cardsBack;
 };
 
+const restart = () => {
+  cardsFill()
+}
+
 let temp = [];
 let tempId = [];
 // console.log(tempId);
@@ -75,9 +79,7 @@ const match = (temp, tempId) => {
     // cardsTable[tempId[0]].remove()
     // cardsTable[tempId[1]].remove()
     board.children[0].children[countMatch].append(cardsTable[tempId[0]])
-    cardsTable[tempId[0]].removeEventListener("click", cardClicked)
     board.children[0].children[countMatch].append(cardsTable[tempId[1]])
-    cardsTable[tempId[0]].removeEventListener("click", cardClicked)
     // board.createElement('tr')
     countMatch++
     // console.log(countMatch)
@@ -153,7 +155,7 @@ const cardClicked = (e) => {
 };
 
 // start button is pressed
-start.addEventListener("click", cardsFill);
+start.addEventListener("click", restart);
 
 //eventListener for every box in the table
 if (countMatch <= 4) {
