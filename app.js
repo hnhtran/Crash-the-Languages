@@ -75,7 +75,9 @@ const match = (temp, tempId) => {
     // cardsTable[tempId[0]].remove()
     // cardsTable[tempId[1]].remove()
     board.children[0].children[countMatch].append(cardsTable[tempId[0]])
+    cardsTable[tempId[0]].removeEventListener("click", cardClicked)
     board.children[0].children[countMatch].append(cardsTable[tempId[1]])
+    cardsTable[tempId[0]].removeEventListener("click", cardClicked)
     // board.createElement('tr')
     countMatch++
     // console.log(countMatch)
@@ -86,7 +88,7 @@ const match = (temp, tempId) => {
 let count2 = 0;
 const cardClicked = (e) => {
   let cardId = e.target.id;
-  console.log(cardsTable)
+  // console.log(cardsTable)
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
@@ -142,6 +144,10 @@ const cardClicked = (e) => {
       cardsTable.forEach((card) => {
         card.addEventListener("click", cardClicked);
       });
+    } else {
+      cardsTable.forEach((card) => {
+        card.removeEventListener("click", cardClicked);
+      });
     }
   }
 };
@@ -153,6 +159,10 @@ start.addEventListener("click", cardsFill);
 if (countMatch < 4) {
   cardsTable.forEach((card) => {
     card.addEventListener("click", cardClicked);
+  });
+} else {
+  cardsTable.forEach((card) => {
+    card.removeEventListener("click", cardClicked);
   });
 }
 
