@@ -65,24 +65,28 @@ const cardsFill = () => {
 
 let temp = [];
 let tempId = [];
-console.log(tempId);
-console.log(temp);
+// console.log(tempId);
+// console.log(temp);
 let board = document.getElementById('board')
+let countMatch = 0
 // initiate isMatch()
 const match = (temp, tempId) => {
   if (temp[0] === temp[1]) {
     // cardsTable[tempId[0]].remove()
     // cardsTable[tempId[1]].remove()
-    board.append(cardsTable[tempId[0]])
-    board.append(cardsTable[tempId[1]])
+    board.children[0].children[countMatch].append(cardsTable[tempId[0]])
+    board.children[0].children[countMatch].append(cardsTable[tempId[1]])
     // board.createElement('tr')
-    console.log(board)
+    countMatch++
+    // console.log(countMatch)
+    // console.log(board.children[0].children[0])
   }
 };
 
 let count2 = 0;
 const cardClicked = (e) => {
   let cardId = e.target.id;
+  console.log(cardsTable)
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
@@ -102,8 +106,8 @@ const cardClicked = (e) => {
     cardsTable[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
-    console.log(tempId);
-    console.log(temp);
+    // console.log(tempId);
+    // console.log(temp);
     cardsTable[cardId].innerText = cardsSwap[cardId];
     
     // console.log(temp);
@@ -119,8 +123,8 @@ const cardClicked = (e) => {
     }
 
     cardsTable[cardId].removeEventListener("click", cardClicked);
-    console.log(cardsTable[tempId[0]])
-    console.log(cardsTable[cardId])
+    // console.log(cardsTable[tempId[0]])
+    // console.log(cardsTable[cardId])
     count2++;
   } else {
     match(temp, tempId)
@@ -128,17 +132,17 @@ const cardClicked = (e) => {
     cardsTable.innerText = shuffledCards;
     temp = []
     tempId = []
-    console.log(tempId);
-    console.log(temp);
 
     //reset the colors back to neutral
     for (let i = 0; i < cardsTable.length; i++) {
       cardsTable[i].style = `background-color: none;`;
     }
     //eventListener for every box in the table
-    cardsTable.forEach((card) => {
-      card.addEventListener("click", cardClicked);
-    });
+    if (countMatch < 4) {
+      cardsTable.forEach((card) => {
+        card.addEventListener("click", cardClicked);
+      });
+    }
   }
 };
 
@@ -146,9 +150,11 @@ const cardClicked = (e) => {
 start.addEventListener("click", cardsFill);
 
 //eventListener for every box in the table
-cardsTable.forEach((card) => {
-  card.addEventListener("click", cardClicked);
-  // Match(temp, tempId)
-});
+if (countMatch < 4) {
+  cardsTable.forEach((card) => {
+    card.addEventListener("click", cardClicked);
+  });
+}
+
 
 
