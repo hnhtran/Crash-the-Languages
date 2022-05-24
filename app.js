@@ -63,8 +63,11 @@ const cardsFill = () => {
   cardsSwap = cardsBack;
 };
 
+const row1 = document.getElementById('row1')
+const row2 = document.getElementById('row2')
 const restart = () => {
   cardsFill()
+  console.log(row1.length)
 }
 
 let temp = [];
