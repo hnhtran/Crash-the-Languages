@@ -60,7 +60,7 @@ const cardsFill = () => {
   // everytime cardFill was called, cardsBackFill should be called also
   cardsBackFill(shuffledCards);
   // console.log(`${cardsBack} Back of the cards was called `);
-  cardsSwap = cardsBack
+  cardsSwap = cardsBack;
 };
 
 let count2 = 0;
@@ -86,7 +86,6 @@ const cardClicked = (e) => {
 
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
-    
     cardsTable[cardId].innerText = cardsSwap[cardId];
     cardsTable[cardId].style = `background-color: pink;`;
     // console.log(temp);
@@ -95,20 +94,28 @@ const cardClicked = (e) => {
       if (i !== cardId) cardsTable[i].innerText = cardsSwap[i];
     }
     // reset cards at the back as cardsTable, except value of the card at cardId
-    if (cardsSwap === shuffledCards){
+    if (cardsSwap === shuffledCards) {
       cardsSwap = cardsBack;
     } else {
-      cardsSwap = shuffledCards
+      cardsSwap = shuffledCards;
     }
-    
+
     // console.log(cardsBack)
     cardsTable[cardId].removeEventListener("click", cardClicked);
     console.log(cardsBack);
     count2++;
   } else {
     count2 = 0;
-    cardsTable.style = `background-color: aliceblue;`;
     cardsTable.innerText = shuffledCards;
+
+    //reset the colors back to neutral
+    for (let i = 0; i < cardsTable.length; i++) {
+      cardsTable[i].style = `background-color: none;`;
+    }
+    //eventListener for every box in the table
+    cardsTable.forEach((card) => {
+      card.addEventListener("click", cardClicked);
+    });
   }
 };
 
