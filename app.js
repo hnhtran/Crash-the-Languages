@@ -9,7 +9,7 @@ const start = document.getElementById("shuffle");
 const cardE = ["AWESOME", "BEAUTIFUL", "HAPPPY", "SUCCESS"];
 const cardV = ["TUYỆT VỜI", "XINH ĐẸP", "HẠNH PHÚC", "THÀNH CÔNG"];
 // const cards = ['AWESOME', 'BEAUTIFUL', 'HAPPPY', 'SUCCESS', 'TUYỆT VỜI', 'XINH ĐẸP', 'HẠNH PHÚC', 'THÀNH CÔNG']
-const cards = cardE.concat(cardV);
+let cards = cardE.concat(cardV);
 console.log(`${cards} Intial cards `);
 
 // new elements
@@ -63,19 +63,34 @@ const cardsFill = () => {
   cardsSwap = cardsBack;
 };
 
+// restart here, reset table, reset board result
 const row1 = document.getElementById('row1')
 const row2 = document.getElementById('row2')
+let countMatch = 0
 const restart = () => {
-  cardsFill()
-  console.log(row1.length)
+  if (row1.children.length !== 0) {
+    cardsFill()
+  } else {
+    for (let i = 0; i < row1.children.length; i++) {
+      row1.append(cardsTable[i])
+      row2.append(cardsTable[i + 4])
+    }
+    cardsFill()
+  }
+  //reset the colors back to neutral
+  for (let i = 0; i < cardsTable.length; i++) {
+    cardsTable[i].style = `background-color: none;`;
+  }
+  countMatch = 0
+  // console.log(row1.children.length)
 }
+restart()
 
 let temp = [];
 let tempId = [];
 // console.log(tempId);
 // console.log(temp);
 let board = document.getElementById('board')
-let countMatch = 0
 // initiate isMatch()
 const match = (temp, tempId) => {
   if (temp[0] === temp[1]) {
