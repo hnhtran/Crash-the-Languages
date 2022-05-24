@@ -1,7 +1,7 @@
 // console.log("linked")
 
 // Grab the neccessary elements
-const cardsTable = document.querySelectorAll(".cards");
+let cardsTable = document.querySelectorAll(".cards");
 // console.log(cardsTable[0].innerText);
 const start = document.getElementById("shuffle");
 
@@ -60,8 +60,10 @@ const cardsFill = () => {
   // everytime cardFill was called, cardsBackFill should be called also
   cardsBackFill(shuffledCards);
   // console.log(`${cardsBack} Back of the cards was called `);
+  cardsSwap = cardsBack
 };
 
+let count2 = 0;
 const cardClicked = (e) => {
   let cardId = e.target.id;
   console.log(
@@ -79,21 +81,35 @@ const cardClicked = (e) => {
   // what is isMatch?
   let temp = cardsTable[cardId].innerText;
   let tempId = cardId;
-  let count2 = 0;
   // console.log(tempId)
   // console.log(cardId)
-  // console.log(cardsBack[cardId])
+
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
-  // if (count2 < 2) {
-    cardsTable[cardId].innerText = cardsBack[cardId];
+  if (count2 < 2) {
+    
+    cardsTable[cardId].innerText = cardsSwap[cardId];
     cardsTable[cardId].style = `background-color: pink;`;
-    console.log(temp);
+    // console.log(temp);
+
     for (let i = 0; i < cardsTable.length; i++) {
-      if (i !== cardId) cardsTable[i].innerText = cardsBack[i];
+      if (i !== cardId) cardsTable[i].innerText = cardsSwap[i];
     }
-    cardsBack = cardsBackFill(cardsBack)
-    // count2++
-  // }
+    // reset cards at the back as cardsTable, except value of the card at cardId
+    if (cardsSwap === shuffledCards){
+      cardsSwap = cardsBack;
+    } else {
+      cardsSwap = shuffledCards
+    }
+    
+    // console.log(cardsBack)
+    cardsTable[cardId].removeEventListener("click", cardClicked);
+    console.log(cardsBack);
+    count2++;
+  } else {
+    count2 = 0;
+    cardsTable.style = `background-color: aliceblue;`;
+    cardsTable = shuffledCards;
+  }
 };
 
 // start button is pressed
