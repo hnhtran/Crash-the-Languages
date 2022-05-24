@@ -108,7 +108,7 @@ const cardClicked = (e) => {
   } else {
     count2 = 0;
     cardsTable.style = `background-color: aliceblue;`;
-    cardsTable = shuffledCards;
+    cardsTable.innerText = shuffledCards;
   }
 };
 
