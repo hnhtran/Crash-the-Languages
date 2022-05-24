@@ -1,4 +1,5 @@
 // console.log("linked")
+// Prob: set the board box unclickable, restart function
 
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
@@ -70,6 +71,7 @@ let countMatch = 0
 const restart = () => {
   if (row1.children.length !== 0) {
     cardsFill()
+    console.log(row1.children.length)
   } else {
     for (let i = 0; i < row1.children.length; i++) {
       row1.append(cardsTable[i])
