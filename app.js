@@ -156,7 +156,7 @@ const cardClicked = (e) => {
 start.addEventListener("click", cardsFill);
 
 //eventListener for every box in the table
-if (countMatch < 4) {
+if (countMatch <= 4) {
   cardsTable.forEach((card) => {
     card.addEventListener("click", cardClicked);
   });
