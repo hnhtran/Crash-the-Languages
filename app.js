@@ -64,6 +64,7 @@ const cardsFill = () => {
 };
 
 let count2 = 0;
+let temp = []
 const cardClicked = (e) => {
   let cardId = e.target.id;
   console.log(
@@ -79,13 +80,11 @@ const cardClicked = (e) => {
   // reset that text to cardsBack value
   // temp will be used for if statement (or isMatch())
   // what is isMatch?
-  let temp = cardsTable[cardId].innerText;
-  let tempId = cardId;
-  // console.log(tempId)
-  // console.log(cardId)
 
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
+    temp[count2] = cardsTable[cardId].innerText;
+    console.log(temp)
     cardsTable[cardId].innerText = cardsSwap[cardId];
     cardsTable[cardId].style = `background-color: pink;`;
     // console.log(temp);
@@ -102,7 +101,7 @@ const cardClicked = (e) => {
 
     // console.log(cardsBack)
     cardsTable[cardId].removeEventListener("click", cardClicked);
-    console.log(cardsBack);
+    // console.log(cardsBack);
     count2++;
   } else {
     count2 = 0;
@@ -117,6 +116,7 @@ const cardClicked = (e) => {
       card.addEventListener("click", cardClicked);
     });
   }
+  console.log(count2);
 };
 
 // start button is pressed
