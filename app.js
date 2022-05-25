@@ -83,10 +83,10 @@ function restart() {
     // set any unexpected background color back to neutral
     home[i].style = `background-color: none;`;
   }
-// set any unexpected background color back to neutral
-  // for (let i = 0; i < cardsTable.length; i++) {
-  //   home[i].style = `background-color: none;`;
-  // }
+  //remove td from board
+  for (let i = 0; i < 4; i++) {
+    board.children[0].children[i].innerHTML=``
+  }
   
   cardsFill();
   cardClickListen()
@@ -117,9 +117,7 @@ function match(temp, tempId) {
 let count2 = 0;
 function cardClicked(e) {
   let cardId = e.target.id;
-  if (countMatch === 4) {
-    data.removeAttribute('class')
-  }
+  
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?

@@ -4,15 +4,12 @@ body {
 
 .container, table {
     margin-top: 20px;
-    text-align: center;
 }
 
 #board {
     background-color: pink;
 }
 
-
-
-h1, h4 {
+h1, h4, table {
     text-align: center;
 }
