@@ -3,6 +3,7 @@
 
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
+let home = document.querySelectorAll(".home")
 // console.log(cardsTable[0].innerText);
 const start = document.getElementById("shuffle");
 
@@ -69,20 +70,20 @@ const row1 = document.getElementById('row1')
 const row2 = document.getElementById('row2')
 let countMatch = 0
 const restart = () => {
-  if (row1.children.length !== 0) {
-    cardsFill()
-    console.log(row1.children.length)
-  } else {
-    for (let i = 0; i < row1.children.length; i++) {
-      row1.append(cardsTable[i])
-      row2.append(cardsTable[i + 4])
-    }
-    cardsFill()
-  }
-  //reset the colors back to neutral
-  for (let i = 0; i < cardsTable.length; i++) {
-    cardsTable[i].style = `background-color: none;`;
-  }
+  // if (row1.children.length !== 0) {
+  //   cardsFill()
+  //   console.log(row1.children.length)
+  // } else {
+  //   for (let i = 0; i < row1.children.length; i++) {
+  //     row1.append(cardsTable[i])
+  //     row2.append(cardsTable[i + 4])
+  //   }
+  //   cardsFill()
+  // }
+  // //reset the colors back to neutral
+  // for (let i = 0; i < cardsTable.length; i++) {
+  //   cardsTable[i].style = `background-color: none;`;
+  // }
   countMatch = 0
   // console.log(row1.children.length)
 }
