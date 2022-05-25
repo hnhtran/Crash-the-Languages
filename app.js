@@ -97,7 +97,7 @@ let temp = [];
 let tempId = [];
 // console.log(tempId);
 // console.log(temp);
-// let board = document.getElementById('board')
+let board = document.getElementById('board')
 // initiate isMatch()
 // const createBoardTable = () => {
 //   let boardTable = document.createElement('table')
@@ -112,14 +112,22 @@ let tempId = [];
 // }
 const match = (temp, tempId) => {
   if (temp[0] === temp[1]) {
-    // cardsTable[tempId[0]].remove()
-    // cardsTable[tempId[1]].remove()
-    createBoardTable()
-    board.children[0].children[countMatch].append(cardsTable[tempId[0]])
-    board.children[0].children[countMatch].append(cardsTable[tempId[1]])
-    // board.createElement('tr')
+    
+    board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`
+    
+    let td1 = board.children[0].children[countMatch].children[0]
+    let td2 = board.children[0].children[countMatch].children[1]
+
+    td1.append(cardsTable[tempId[0]])
+    td2.append(cardsTable[tempId[1]])
+
+    // board.children[0].children[countMatch].children[0].append(cardsTable[tempId[0]])
+    // board.children[0].children[countMatch].children[1].append(cardsTable[tempId[1]])
+
+    // board.children[0].children[countMatch].append(cardsTable[tempId[0]])
+    // board.children[0].children[countMatch].append(cardsTable[tempId[1]])
     countMatch++
-    // console.log(countMatch)
+    
     // console.log(board.children[0].children[0])
   }
 };
@@ -145,7 +153,7 @@ const cardClicked = (e) => {
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
     // cardsTable[cardId].style = `background-color: pink;`;
-    home[cardId].style = `background-color: pink;`;
+    // home[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
     // console.log(tempId);
