@@ -89,7 +89,14 @@ function restart() {
     // cardsTable[i].style = `background-color: none;`;
     home[i].append(cardsTable[i]);
   }
+// set any unexpected beckground color back to neutral
+  for (let i = 0; i < cardsTable.length; i++) {
+    home[i].style = `background-color: none;`;
+  }
   //remove td from table 2?
+  for (let i = 0; i < 4; i++) {
+    board.children[0].children[i].children.remove
+  }
 
   cardsFill();
   cardClickListen()
@@ -99,6 +106,7 @@ let temp = [];
 let tempId = [];
 function match(temp, tempId) {
   if (temp[0] === temp[1]) {
+
     board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
 
     let td1 = board.children[0].children[countMatch].children[0];
@@ -108,15 +116,17 @@ function match(temp, tempId) {
     td2.append(cardsTable[tempId[1]]);
     tempIdArr.push(tempId[0]);
     tempIdArr.push(tempId[1]);
-    countMatch++;
 
+    home[tempId[0]].removeEventListener("click", cardClicked);
+    home[tempId[1]].removeEventListener("click", cardClicked);
+    countMatch++;
   }
 };
 
 let count2 = 0;
 function cardClicked(e) {
   let cardId = e.target.id;
-
+ 
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
@@ -154,9 +164,7 @@ function cardClicked(e) {
       cardsSwap = shuffledCards;
     }
 
-    home[cardId].removeEventListener("click", cardClicked);
-    // console.log(cardsTable[tempId[0]])
-    // console.log(cardsTable[cardId])
+    // home[cardId].removeEventListener("click", cardClicked);
     count2++;
   } else {
     match(temp, tempId);
@@ -169,9 +177,6 @@ function cardClicked(e) {
     for (let i = 0; i < cardsTable.length; i++) {
       home[i].style = `background-color: none;`;
     }
-    // home.forEach((card) => {
-    //   card.addEventListener("click", cardClicked);
-    // });
   }
 };
 
@@ -179,7 +184,7 @@ function cardClicked(e) {
 
 //eventListener for every box in the table
 function cardClickListen() {
-  if (countMatch < 5) {
+  if (countMatch < 4) {
     home.forEach((card) => {
       // if cardId === tempIdArray, remove event listener, except 0s
       // console.log(tempIdArr.length)
