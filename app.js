@@ -3,7 +3,7 @@
 
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
-let home = document.querySelectorAll(".home")
+let home = document.querySelectorAll(".home");
 // console.log(cardsTable[0].innerText);
 const start = document.getElementById("shuffle");
 
@@ -66,10 +66,11 @@ const cardsFill = () => {
 };
 
 // restart here, reset table, reset board result
-const row1 = document.getElementById('row1')
-const row2 = document.getElementById('row2')
-let countMatch = 0
+const row1 = document.getElementById("row1");
+const row2 = document.getElementById("row2");
+let countMatch = 0;
 const restart = () => {
+  countMatch = 0;
   // if (row1.children.length !== 0) {
   //   cardsFill()
   //   console.log(row1.children.length)
@@ -83,51 +84,42 @@ const restart = () => {
   //reset the colors back to neutral
   for (let i = 0; i < cardsTable.length; i++) {
     // cardsTable[i].style = `background-color: none;`;
-    home[i].append(cardsTable[i])
+    home[i].append(cardsTable[i]);
   }
 
-  cardsFill()
+  cardsFill();
   // console.log(home[1])
-  countMatch = 0
+
   // console.log(row1.children.length)
-}
-restart()
+};
+restart();
 
 let temp = [];
 let tempId = [];
 // console.log(tempId);
 // console.log(temp);
-let board = document.getElementById('board')
-// initiate isMatch()
-// const createBoardTable = () => {
-//   let boardTable = document.createElement('table')
-//   for (let i = 0; i < 5; i++) {
-//     boardTable.append(document.createElement('tr'))
-//   }
-//   for (let i = 0; i < 2; i++) {
-//     boardTable.children[0].append(document.createElement('tr'))
-//   }
-
-//   document.body.append(boardTable)
-// }
+let board = document.getElementById("board");
+let tempIdArr = [];
 const match = (temp, tempId) => {
   if (temp[0] === temp[1]) {
-    
-    board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`
-    
-    let td1 = board.children[0].children[countMatch].children[0]
-    let td2 = board.children[0].children[countMatch].children[1]
+    board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
 
-    td1.append(cardsTable[tempId[0]])
-    td2.append(cardsTable[tempId[1]])
+    let td1 = board.children[0].children[countMatch].children[0];
+    let td2 = board.children[0].children[countMatch].children[1];
+
+    td1.append(cardsTable[tempId[0]]);
+    td2.append(cardsTable[tempId[1]]);
+    tempIdArr.push([tempId[0]]);
+    tempIdArr.push([tempId[1]]);
+    // console.log(tempIdArr)
 
     // board.children[0].children[countMatch].children[0].append(cardsTable[tempId[0]])
     // board.children[0].children[countMatch].children[1].append(cardsTable[tempId[1]])
 
     // board.children[0].children[countMatch].append(cardsTable[tempId[0]])
     // board.children[0].children[countMatch].append(cardsTable[tempId[1]])
-    countMatch++
-    
+    countMatch++;
+
     // console.log(board.children[0].children[0])
   }
 };
@@ -135,6 +127,7 @@ const match = (temp, tempId) => {
 let count2 = 0;
 const cardClicked = (e) => {
   let cardId = e.target.id;
+
   // console.log(cardsTable)
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
@@ -153,13 +146,14 @@ const cardClicked = (e) => {
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
     // cardsTable[cardId].style = `background-color: pink;`;
-    // home[cardId].style = `background-color: pink;`;
+
+    home[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
     // console.log(tempId);
     // console.log(temp);
     cardsTable[cardId].innerText = cardsSwap[cardId];
-    
+
     // console.log(temp);
 
     for (let i = 0; i < cardsTable.length; i++) {
@@ -177,27 +171,26 @@ const cardClicked = (e) => {
     // console.log(cardsTable[cardId])
     count2++;
   } else {
-    match(temp, tempId)
+    match(temp, tempId);
     count2 = 0;
     cardsTable.innerText = shuffledCards;
-    temp = []
-    tempId = []
+    temp = [];
+    tempId = [];
 
     //reset the colors back to neutral
     for (let i = 0; i < cardsTable.length; i++) {
-      // cardsTable[i].style = `background-color: none;`;
-      home[cardId].style = `background-color: none;`;
+      cardsTable[i].style = `background-color: none;`;
     }
     //eventListener for every box in the table
     // if (countMatch < 4) {
-      home.forEach((card) => {
-        card.addEventListener("click", cardClicked);
-      });
+    home.forEach((card) => {
+      card.addEventListener("click", cardClicked);
+    });
     // } else {
     //   home.forEach((card) => {
     //     card.removeEventListener("click", cardClicked);
     //   });
-    // } 
+    // }
   }
 };
 
@@ -207,13 +200,20 @@ start.addEventListener("click", restart);
 //eventListener for every box in the table
 if (countMatch < 5) {
   home.forEach((card) => {
-    card.addEventListener("click", cardClicked);
-  });
-} else {
-  home.forEach((card) => {
-    card.removeEventListener("click", cardClicked);
+    // if cardId === tempIdArray, remove event listener
+    console.log(card.id)
+    for (let i = 0; i < tempIdArr.length; i++) {
+      if (card.id === tempIdArr[i]) {
+        card.addEventListener("click", cardClicked);
+      } else{
+        card.removeEventListener("click", cardClicked);
+      }
+    }
+    // card.addEventListener("click", cardClicked);
   });
 }
-
-
-
+// else {
+//   home.forEach((card) => {
+//     card.removeEventListener("click", cardClicked);
+//   });
+// }
