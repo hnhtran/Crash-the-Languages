@@ -4,6 +4,7 @@
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
 let home = document.querySelectorAll(".home");
+let board = document.getElementById("board");
 // console.log(cardsTable[0].innerText);
 const start = document.getElementById("shuffle");
 
@@ -22,7 +23,7 @@ const shuffle = (arr) => {
 
 // Generate meaning at the back of the cards
 let cardsBack = [];
-const cardsBackFill = (arr) => {
+function cardsBackFill(arr) {
   // bug here, when call this function everytime, its generate a new array to add on the previous one. resolved!
   if (cardsBack === null) {
     for (let i = 0; i < arr.length; i++) {
@@ -51,7 +52,7 @@ const cardsBackFill = (arr) => {
 };
 
 // cardsFill will be called when Start button is pressed, and empty table will be filled with words
-const cardsFill = () => {
+function cardsFill() {
   shuffledCards = shuffle(cards);
   // console.log(
   //   `${shuffledCards} First display cards when Start button pressed`
@@ -69,8 +70,10 @@ const cardsFill = () => {
 const row1 = document.getElementById("row1");
 const row2 = document.getElementById("row2");
 let countMatch = 0;
-const restart = () => {
+let tempIdArr = [];
+function restart() {
   countMatch = 0;
+  tempIdArr=[]
   // if (row1.children.length !== 0) {
   //   cardsFill()
   //   console.log(row1.children.length)
@@ -86,21 +89,15 @@ const restart = () => {
     // cardsTable[i].style = `background-color: none;`;
     home[i].append(cardsTable[i]);
   }
+  //remove td from table 2?
 
   cardsFill();
-  // console.log(home[1])
-
-  // console.log(row1.children.length)
+  cardClickListen()
 };
-restart();
 
 let temp = [];
 let tempId = [];
-// console.log(tempId);
-// console.log(temp);
-let board = document.getElementById("board");
-let tempIdArr = [];
-const match = (temp, tempId) => {
+function match(temp, tempId) {
   if (temp[0] === temp[1]) {
     board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
 
@@ -109,26 +106,17 @@ const match = (temp, tempId) => {
 
     td1.append(cardsTable[tempId[0]]);
     td2.append(cardsTable[tempId[1]]);
-    tempIdArr.push([tempId[0]]);
-    tempIdArr.push([tempId[1]]);
-    // console.log(tempIdArr)
-
-    // board.children[0].children[countMatch].children[0].append(cardsTable[tempId[0]])
-    // board.children[0].children[countMatch].children[1].append(cardsTable[tempId[1]])
-
-    // board.children[0].children[countMatch].append(cardsTable[tempId[0]])
-    // board.children[0].children[countMatch].append(cardsTable[tempId[1]])
+    tempIdArr.push(tempId[0]);
+    tempIdArr.push(tempId[1]);
     countMatch++;
 
-    // console.log(board.children[0].children[0])
   }
 };
 
 let count2 = 0;
-const cardClicked = (e) => {
+function cardClicked(e) {
   let cardId = e.target.id;
 
-  // console.log(cardsTable)
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
@@ -157,7 +145,7 @@ const cardClicked = (e) => {
     // console.log(temp);
 
     for (let i = 0; i < cardsTable.length; i++) {
-      if (i !== cardId) cardsTable[i].innerText = cardsSwap[i];
+      if (i !== cardId) {cardsTable[i].innerText = cardsSwap[i]};
     }
     // reset cards at the back as cardsTable, except value of the card at cardId
     if (cardsSwap === shuffledCards) {
@@ -179,41 +167,31 @@ const cardClicked = (e) => {
 
     //reset the colors back to neutral
     for (let i = 0; i < cardsTable.length; i++) {
-      cardsTable[i].style = `background-color: none;`;
+      home[i].style = `background-color: none;`;
     }
-    //eventListener for every box in the table
-    // if (countMatch < 4) {
-    home.forEach((card) => {
-      card.addEventListener("click", cardClicked);
-    });
-    // } else {
-    //   home.forEach((card) => {
-    //     card.removeEventListener("click", cardClicked);
-    //   });
-    // }
+    // home.forEach((card) => {
+    //   card.addEventListener("click", cardClicked);
+    // });
   }
 };
 
-// start button is pressed
-start.addEventListener("click", restart);
+
 
 //eventListener for every box in the table
-if (countMatch < 5) {
-  home.forEach((card) => {
-    // if cardId === tempIdArray, remove event listener
-    console.log(card.id)
-    for (let i = 0; i < tempIdArr.length; i++) {
-      if (card.id === tempIdArr[i]) {
+function cardClickListen() {
+  if (countMatch < 5) {
+    home.forEach((card) => {
+      // if cardId === tempIdArray, remove event listener, except 0s
+      // console.log(tempIdArr.length)
+      if (tempIdArr.length === 0) {
         card.addEventListener("click", cardClicked);
-      } else{
-        card.removeEventListener("click", cardClicked);
-      }
-    }
-    // card.addEventListener("click", cardClicked);
-  });
+      } 
+    });
+  }
 }
-// else {
-//   home.forEach((card) => {
-//     card.removeEventListener("click", cardClicked);
-//   });
-// }
+
+restart();
+// start button is pressed
+start.addEventListener("click", restart);
+cardClickListen()
+
