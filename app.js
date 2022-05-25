@@ -80,10 +80,14 @@ const restart = () => {
   //   }
   //   cardsFill()
   // }
-  // //reset the colors back to neutral
-  // for (let i = 0; i < cardsTable.length; i++) {
-  //   cardsTable[i].style = `background-color: none;`;
-  // }
+  //reset the colors back to neutral
+  for (let i = 0; i < cardsTable.length; i++) {
+    // cardsTable[i].style = `background-color: none;`;
+    home[i].append(cardsTable[i])
+  }
+
+  cardsFill()
+  console.log(home[1])
   countMatch = 0
   // console.log(row1.children.length)
 }
