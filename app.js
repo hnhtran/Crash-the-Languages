@@ -1,10 +1,10 @@
 // console.log("linked")
-// Prob: set the board box unclickable, restart function
 
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
 let home = document.querySelectorAll(".home");
-let board = document.getElementById("board");
+let board = document.getElementById('board');
+let data = document.getElementById('data')
 // console.log(cardsTable[0].innerText);
 const start = document.getElementById("shuffle");
 
@@ -67,37 +67,27 @@ function cardsFill() {
 };
 
 // restart here, reset table, reset board result
-const row1 = document.getElementById("row1");
-const row2 = document.getElementById("row2");
 let countMatch = 0;
 let tempIdArr = [];
 function restart() {
   countMatch = 0;
   tempIdArr=[]
-  // if (row1.children.length !== 0) {
-  //   cardsFill()
-  //   console.log(row1.children.length)
-  // } else {
-  //   for (let i = 0; i < row1.children.length; i++) {
-  //     row1.append(cardsTable[i])
-  //     row2.append(cardsTable[i + 4])
-  //   }
-  //   cardsFill()
-  // }
-  //reset the colors back to neutral
+  
+  //reset border of the 2 tables
+  board.removeAttribute('class')
+  data.setAttribute('class', 'table table-bordered')
+
   for (let i = 0; i < cardsTable.length; i++) {
     // cardsTable[i].style = `background-color: none;`;
     home[i].append(cardsTable[i]);
-  }
-// set any unexpected beckground color back to neutral
-  for (let i = 0; i < cardsTable.length; i++) {
+    // set any unexpected background color back to neutral
     home[i].style = `background-color: none;`;
   }
-  //remove td from table 2?
-  for (let i = 0; i < 4; i++) {
-    board.children[0].children[i].children.remove
-  }
-
+// set any unexpected background color back to neutral
+  // for (let i = 0; i < cardsTable.length; i++) {
+  //   home[i].style = `background-color: none;`;
+  // }
+  
   cardsFill();
   cardClickListen()
 };
@@ -105,6 +95,7 @@ function restart() {
 let temp = [];
 let tempId = [];
 function match(temp, tempId) {
+  board.setAttribute('class', 'table table-bordered')
   if (temp[0] === temp[1]) {
 
     board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
@@ -126,7 +117,9 @@ function match(temp, tempId) {
 let count2 = 0;
 function cardClicked(e) {
   let cardId = e.target.id;
- 
+  if (countMatch === 4) {
+    data.removeAttribute('class')
+  }
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
@@ -184,15 +177,15 @@ function cardClicked(e) {
 
 //eventListener for every box in the table
 function cardClickListen() {
-  if (countMatch < 4) {
+  // if (countMatch < 4) {
     home.forEach((card) => {
       // if cardId === tempIdArray, remove event listener, except 0s
       // console.log(tempIdArr.length)
-      if (tempIdArr.length === 0) {
+      // if (tempIdArr.length === 0) {
         card.addEventListener("click", cardClicked);
-      } 
+      // } 
     });
-  }
+  // }
 }
 
 restart();

@@ -2,9 +2,16 @@ body {
     background-color: aliceblue;
 }
 
-.container {
+.container, table {
     margin-top: 20px;
+    text-align: center;
 }
+
+#board {
+    background-color: pink;
+}
+
+
 
 h1, h4 {
     text-align: center;

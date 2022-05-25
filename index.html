@@ -15,80 +15,56 @@
     <title>Crash the Language - Game for Learner</title>
   </head>
   <body>
-    
     <div class="container">
       <h1>Crash the Language - Game for Learner</h1>
-      <h4 id="msg">Click Start to begin.</h4>
-      <button id="shuffle">Restart</button>
-      
-      <!-- <div id="board">
-        <div class="card" id="0">AWESOME</div>
-        <div class="card" id="1">BEAUTIFUL</div>
-        <div class="card" id="2">HAPPPY</div>
-        <div class="card" id="3">SUCCESS</div>
-        <div class="card" id="4">TUYỆT VỜI</div>
-        <div class="card" id="5">XINH ĐẸP</div>
-        <div class="card" id="6">HẠNH PHÚC</div>
-        <div class="card" id="7">THÀNH CÔNG</div>
-      </div> -->
-     
-        <!-- <table class="table table-bordered">
-            <tr>
-              <td class="cards" id="0">AWESOME</td>
-              <td class="cards" id="1">BEAUTIFUL</td>
-              <td class="cards" id="2">HAPPPY</td>
-              <td class="cards" id="3">SUCCESS</td>
-            </tr>
-            <tr>
-              <td class="cards" id="4">TUYỆT VỜI</td>
-              <td class="cards" id="5">XINH ĐẸP</td>
-              <td class="cards" id="6">HẠNH PHÚC</td>
-              <td class="cards" id="7">THÀNH CÔNG</td>
-            </tr>
-          </table> -->
+      <h4 id="msg">Click Restart for shuffling.</h4>
+      <div class="d-grid col-2 mx-auto">
+        <button type="button" class="btn btn-primary btn-lg" id="shuffle">
+          Restart
+        </button>
+      </div>
 
-          <table class="table table-bordered">
-              <tr id="row1">
-                <td class="home">
-                  <div class="cards" id="0"></div>
-                </td>
-                <td class="home">
-                  <div class="cards" id="1"></div>
-                </td>
-                <td class="home">
-                  <div class="cards" id="2"></div>
-                </td>
-                <td class="home">
-                  <div class="cards" id="3"></div>
-                </td>
-              </tr>
-              <tr id="row2"> 
-                <td class="home">
-                  <div class="cards" id="4"></div>
-                </td>
-                <td class="home">
-                  <div class="cards" id="5"></div>
-                </td>
-                <td class="home">
-                  <div class="cards" id="6"></div>
-                </td>
-                <td class="home">
-                  <div class="cards" id="7"></div>
-                </td>
-              </tr>
-          </table>
+      <table id="data">
+        <tr id="row1">
+          <td class="home">
+            <div class="cards" id="0"></div>
+          </td>
+          <td class="home">
+            <div class="cards" id="1"></div>
+          </td>
+          <td class="home">
+            <div class="cards" id="2"></div>
+          </td>
+          <td class="home">
+            <div class="cards" id="3"></div>
+          </td>
+        </tr>
+        <tr id="row2">
+          <td class="home">
+            <div class="cards" id="4"></div>
+          </td>
+          <td class="home">
+            <div class="cards" id="5"></div>
+          </td>
+          <td class="home">
+            <div class="cards" id="6"></div>
+          </td>
+          <td class="home">
+            <div class="cards" id="7"></div>
+          </td>
+        </tr>
+      </table>
 
-          <table class="table table-bordered" id="board">
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-          </table>
+      <table id="board">
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+      </table>
 
-      <!-- <div>
-        Instructions: You have 50 clicks before the game is over. Win is counted
-        when all the cards have been matched
-      </div> -->
+      <div>
+        Instructions: Match the words with its correct meaning, a little hint here: remember the word that you just click? It will appear after you click!
+      </div>
     </div>
 
     <!-- Everytime a matched card discover, you earn 10pts, everytime a matched card hidden successfully, you loose 1pt. -->
