@@ -1,4 +1,12 @@
 // console.log("linked")
+//=============future development==========//
+// remember class visual hidden (maybe very useful)
+// when user finish the game, some animation will pop up or word flying. I am still interested in word clouds
+// adding difficulties like timing, score display, max clickable timer, etc.
+// bootstrap text responsive when changing table or td or div dimension, and make text inside table align center middle
+
+//=============future development==========//
+// today 26/5/22 1. update read me, 2. changing texts within container responsive, 3. screenshots, make my respository look better and organised
 
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
