@@ -10,14 +10,11 @@ body {
     background-color: pink;
 }
 
-h1, h4, table {
+h1, h4, .cards {
     text-align: center;
 }
-
-table {
-    table-layout:fixed;
-}
-td {
-width:150px; 
-height:75px; 
-}
+/* 
+td, .cards {
+width: 10vw; 
+height: 10vh; 
+} */
