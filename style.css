@@ -13,3 +13,11 @@ body {
 h1, h4, table {
     text-align: center;
 }
+
+table {
+    table-layout:fixed;
+}
+td {
+width:150px; 
+height:75px; 
+}

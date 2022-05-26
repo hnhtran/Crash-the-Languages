@@ -71,9 +71,14 @@ function cardsFill() {
 // restart here, reset table, reset board result
 let countMatch = 0;
 let tempIdArr = [];
+let temp = [];
+let tempId = [];
 function restart() {
   countMatch = 0;
   tempIdArr = [];
+  tempId = []
+  temp = []
+  count2 = 0
 
   //reset border of the 2 tables
   board.removeAttribute("class");
@@ -94,8 +99,7 @@ function restart() {
   cardClickListen();
 }
 
-let temp = [];
-let tempId = [];
+
 function match(temp, tempId) {
   board.setAttribute("class", "table table-bordered");
   if (temp[0] === temp[1]) {
@@ -114,10 +118,6 @@ function match(temp, tempId) {
 
     countMatch++;
 
-    if (countMatch === 3) {
-      home[tempId[0]].addEventListener("click", cardClicked);
-      home[tempId[1]].addEventListener("click", cardClicked);
-    }
     console.log(countMatch);
     if (countMatch === 4) {
       //remove table border
@@ -134,8 +134,6 @@ function match(temp, tempId) {
 let count2 = 0;
 function cardClicked(e) {
   let cardId = e.target.id;
-  // console.log(`${countMatch} reach`)
-
   // console.log(
   //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
   // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
@@ -157,11 +155,26 @@ function cardClicked(e) {
     home[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
-    // console.log(tempId);
-    // console.log(temp);
-    cardsTable[cardId].innerText = cardsSwap[cardId];
+    console.log(tempId);
+    console.log(temp);
+    console.log(tempIdArr);
+    if (tempIdArr.length === 6 && tempId.length === 2) {
+      board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
 
-    // console.log(temp);
+      let td1 = board.children[0].children[countMatch].children[0];
+      let td2 = board.children[0].children[countMatch].children[1];
+
+      td1.append(cardsTable[tempId[0]]);
+      td2.append(cardsTable[tempId[1]]);
+      tempIdArr.push(tempId[0]);
+      tempIdArr.push(tempId[1]);
+      data.removeAttribute("class");
+      for (let i = 0; i < cardsTable.length; i++) {
+        // set any unexpected background color back to neutral
+        home[i].style = `background-color: none;`;
+      }
+    }
+    cardsTable[cardId].innerText = cardsSwap[cardId];
 
     for (let i = 0; i < cardsTable.length; i++) {
       if (i !== cardId) {
@@ -176,6 +189,7 @@ function cardClicked(e) {
     }
 
     home[cardId].removeEventListener("click", cardClicked);
+    console.log(`${countMatch} inside cardClicked`);
     count2++;
   } else {
     match(temp, tempId);
