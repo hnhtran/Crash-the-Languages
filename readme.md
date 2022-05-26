@@ -25,4 +25,4 @@ CSS
 JavaScript (logic and DOM manipulation)
 
 ## Wireframes (what game will look like): 
-Please see the sources picture
+![Start shot] (https://github.com/hnhtran/Crash-the-Languages/blob/main/Start.png)
