@@ -5,13 +5,17 @@
 ## User Story
 As a user I want to
 
-.Learn a language as fast as possible
+*Learn a language as fast as possible
 
-.Memorise the words without searching dictionary for each word
-.Dont have enough time to put myself together for studying
-.Prefer playing game in my free time
-.Fast reaction with the word meaning I see and here
-.Train my brain for preventing brain decay
+*Memorise the words without searching dictionary for each word
+
+*Dont have enough time to put myself together for studying
+
+*Prefer playing game in my free time
+
+*Fast reaction with the word meaning I see and here
+
+*Train my brain for preventing brain decay
 
 ## Technologies Used:
 HTML
