@@ -6,6 +6,7 @@
 As a user I want to
 
 .Learn a language as fast as possible
+
 .Memorise the words without searching dictionary for each word
 .Dont have enough time to put myself together for studying
 .Prefer playing game in my free time
