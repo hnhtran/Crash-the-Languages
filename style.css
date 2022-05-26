@@ -28,7 +28,13 @@ h1, h4, .cards {
         font-size: 15px;
     }
 
-    .home, .cards {
+    .home, .cards, .instruction {
         font-size: 10px
+    }
+
+    #shuffle {
+        height: 20px;
+        font-size: 10px;
+        padding-top: 0;
     }
 }
