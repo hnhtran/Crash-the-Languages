@@ -21,3 +21,27 @@ JavaScript (logic and DOM manipulation)
 // At the moment is no. Maybe, dont know yet Canvas (Optional)
 
 Wireframes (what game will look like): Please see the sources picture
+
+
+Tiras P. Jordan  12:53 AM
+# Game Name
+
+## Premise:
+
+## User Story
+As a user I want to
+
+.
+.
+.
+.
+.
+.
+
+## Technologies Used:
+HTML
+CSS
+JavaScript (logic and DOM manipulation)
+Canvas (Optional)
+
+## Wireframes (what game will look like):
