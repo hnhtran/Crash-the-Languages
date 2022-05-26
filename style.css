@@ -4,6 +4,7 @@ body {
 
 .container, table {
     margin-top: 20px;
+    text-align: center;
 }
 
 #board {
@@ -13,8 +14,12 @@ body {
 h1, h4, .cards {
     text-align: center;
 }
-/* 
-td, .cards {
-width: 10vw; 
-height: 10vh; 
-} */
+
+@media screen and (max-width: 550px) {
+    h1{
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 15px;
+    }
+}

@@ -16,6 +16,7 @@ let board = document.getElementById("board");
 let data = document.getElementById("data");
 let row1 = document.getElementById("row1");
 let row2 = document.getElementById("row2");
+let msg = document.getElementById("msg")
 // console.log(cardsTable[0].innerText);
 const start = document.getElementById("shuffle");
 
@@ -127,7 +128,7 @@ function match(temp, tempId) {
 
     countMatch++;
 
-    console.log(countMatch);
+    // console.log(countMatch);
     if (countMatch === 4) {
       //remove table border
       data.removeAttribute("class");
@@ -164,9 +165,9 @@ function cardClicked(e) {
     home[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
-    console.log(tempId);
-    console.log(temp);
-    console.log(tempIdArr);
+    // console.log(tempId);
+    // console.log(temp);
+    // console.log(tempIdArr);
     if (tempIdArr.length === 6 && tempId.length === 2) {
       board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
 
@@ -182,6 +183,8 @@ function cardClicked(e) {
         // set any unexpected background color back to neutral
         home[i].style = `background-color: none;`;
       }
+      msg.innerText = `Congratulation! Welldone! Click restart for shuffling the cards`
+      console.log(msg)
     }
     cardsTable[cardId].innerText = cardsSwap[cardId];
 
@@ -198,7 +201,7 @@ function cardClicked(e) {
     }
 
     home[cardId].removeEventListener("click", cardClicked);
-    console.log(`${countMatch} inside cardClicked`);
+    // console.log(`${countMatch} inside cardClicked`);
     count2++;
   } else {
     match(temp, tempId);
