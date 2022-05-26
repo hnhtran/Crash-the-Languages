@@ -2,7 +2,11 @@ body {
     background-color: aliceblue;
 }
 
-.container, table {
+.container-sm {
+    padding: 20px;
+}
+
+table {
     margin-top: 20px;
     text-align: center;
 }
@@ -14,12 +18,17 @@ body {
 h1, h4, .cards {
     text-align: center;
 }
-
+/* ========= media response to font-size=========== */
 @media screen and (max-width: 550px) {
-    h1{
+    h1 {
         font-size: 20px;
     }
+
     h4 {
         font-size: 15px;
+    }
+
+    .home, .cards {
+        font-size: 10px
     }
 }
