@@ -1,4 +1,5 @@
 // console.log("linked")
+
 //=============future development==========//
 // remember class visual hidden (maybe very useful)
 // when user finish the game, some animation will pop up or word flying. I am still interested in word clouds
@@ -19,7 +20,7 @@ let row2 = document.getElementById("row2");
 const start = document.getElementById("shuffle");
 
 //create an array contains values of front page
-const cardE = ["AWESOME", "BEAUTIFUL", "HAPPPY", "SUCCESS"];
+const cardE = ["AWESOME", "BEAUTIFUL", "HAPPY", "SUCCESS"];
 const cardV = ["TUYỆT VỜI", "XINH ĐẸP", "HẠNH PHÚC", "THÀNH CÔNG"];
 // const cards = ['AWESOME', 'BEAUTIFUL', 'HAPPPY', 'SUCCESS', 'TUYỆT VỜI', 'XINH ĐẸP', 'HẠNH PHÚC', 'THÀNH CÔNG']
 let cards = cardE.concat(cardV);
