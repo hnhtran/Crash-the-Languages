@@ -26,8 +26,8 @@ JavaScript (logic and DOM manipulation)
 
 ## Wireframes (what game will look like): 
 ### Start shot
-![Start shot](https://github.com/hnhtran/Crash-the-Languages/blob/main/Start.png)
+![Start shot](https://github.com/hnhtran/Crash-the-Languages/blob/main/assets/Start.png)
 ### Play stage
-![Play stage](https://github.com/hnhtran/Crash-the-Languages/blob/main/Play%20stage.png)
+![Play stage](https://github.com/hnhtran/Crash-the-Languages/blob/main/assets/Play%20stage.png)
 ### Win called
-![Win called](https://github.com/hnhtran/Crash-the-Languages/blob/main/Crash%20it.png)
+![Win called](https://github.com/hnhtran/Crash-the-Languages/blob/main/assets/Crash%20it.png)
