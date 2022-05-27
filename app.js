@@ -136,7 +136,7 @@ function cardClicked(e) {
   count++
   console.log(count)
   if (count > 20) {
-    msg.innerText = `Sorry you hit 50 clicking times limit. Press restart for a new chance.`
+    msg.innerText = `Sorry you hit 20 clicking times limit. Press restart for a new chance.`
     home.forEach((card) => {
       card.removeEventListener("click", cardClicked);
     });
