@@ -72,12 +72,14 @@ let tempIdArr = [];
 let tempId = [];
 let temp = [];
 let count2 = 0;
+let count = 1
 function restart() {
   countMatch = 0;
   tempIdArr = [];
   tempId = [];
   temp = [];
   count2 = 0;
+  count = 1
   msg.innerText = `Click Restart for shuffling.`
 
   //reset border of the 2 tables
@@ -131,7 +133,14 @@ function match(temp, tempId) {
 
 function cardClicked(e) {
   let cardId = e.target.id;
-
+  count++
+  console.log(count)
+  if (count > 20) {
+    msg.innerText = `Sorry you hit 50 clicking times limit. Press restart for a new chance.`
+    home.forEach((card) => {
+      card.removeEventListener("click", cardClicked);
+    });
+  }
   // logic here.
   // also, bug here. When 1 click, all of the card will be changed backwards, except that card. resolved.
   // that text will be stored in temp
@@ -180,6 +189,7 @@ function cardClicked(e) {
   } else {
     match(temp, tempId);
     count2 = 0;
+    count--
     cardsTable.innerText = shuffledCards;
     temp = [];
     tempId = [];
@@ -193,9 +203,9 @@ function cardClicked(e) {
 
 //eventListener for every box in the table
 function cardClickListen() {
-  home.forEach((card) => {
-    card.addEventListener("click", cardClicked);
-  });
+    home.forEach((card) => {
+      card.addEventListener("click", cardClicked);
+    });
 }
 
 restart();
