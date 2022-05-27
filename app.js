@@ -6,9 +6,8 @@
 // adding difficulties like timing, score display, max clickable timer, etc.
 // bootstrap text responsive when changing table or td or div dimension, and make text inside table align center middle
 
-//=============future development==========//
-// today 26/5/22 1. update read me, 2. changing texts within container responsive, 3. screenshots, make my respository look better and organised
-
+//=============current development==========//
+// data array hold cards. board array contains result
 // Grab the neccessary elements
 let cardsTable = document.querySelectorAll(".cards");
 let home = document.querySelectorAll(".home");
@@ -16,18 +15,16 @@ let board = document.getElementById("board");
 let data = document.getElementById("data");
 let row1 = document.getElementById("row1");
 let row2 = document.getElementById("row2");
-let msg = document.getElementById("msg")
-// console.log(cardsTable[0].innerText);
+let msg = document.getElementById("msg");
 const start = document.getElementById("shuffle");
 
 //create an array contains values of front page
 const cardE = ["AWESOME", "BEAUTIFUL", "HAPPY", "SUCCESS"];
 const cardV = ["TUYỆT VỜI", "XINH ĐẸP", "HẠNH PHÚC", "THÀNH CÔNG"];
-// const cards = ['AWESOME', 'BEAUTIFUL', 'HAPPPY', 'SUCCESS', 'TUYỆT VỜI', 'XINH ĐẸP', 'HẠNH PHÚC', 'THÀNH CÔNG']
 let cards = cardE.concat(cardV);
-// console.log(`${cards} Intial cards `);
 
-// new elements
+// shuffle the cards
+// reference this function is from https://sebhastian.com/shuffle-array-javascript/
 let shuffledCards = [];
 const shuffle = (arr) => {
   return [...arr].sort(() => Math.random() - 0.5);
@@ -66,15 +63,11 @@ function cardsBackFill(arr) {
 // cardsFill will be called when Start button is pressed, and empty table will be filled with words
 function cardsFill() {
   shuffledCards = shuffle(cards);
-  // console.log(
-  //   `${shuffledCards} First display cards when Start button pressed`
-  // );
   for (let i = 0; i < shuffledCards.length; i++) {
     cardsTable[i].innerText = shuffledCards[i];
   }
   // everytime cardFill was called, cardsBackFill should be called also
   cardsBackFill(shuffledCards);
-  // console.log(`${cardsBack} Back of the cards was called `);
   cardsSwap = cardsBack;
 }
 
@@ -86,16 +79,16 @@ let tempId = [];
 function restart() {
   countMatch = 0;
   tempIdArr = [];
-  tempId = []
-  temp = []
-  count2 = 0
+  tempId = [];
+  temp = [];
+  count2 = 0;
+  msg.innerText = `Click Restart for shuffling.`
 
   //reset border of the 2 tables
   board.removeAttribute("class");
   data.setAttribute("class", "table table-bordered");
 
   for (let i = 0; i < cardsTable.length; i++) {
-    // cardsTable[i].style = `background-color: none;`;
     home[i].append(cardsTable[i]);
     // set any unexpected background color back to neutral
     home[i].style = `background-color: none;`;
@@ -108,7 +101,6 @@ function restart() {
   cardsFill();
   cardClickListen();
 }
-
 
 function match(temp, tempId) {
   board.setAttribute("class", "table table-bordered");
@@ -128,12 +120,9 @@ function match(temp, tempId) {
 
     countMatch++;
 
-    // console.log(countMatch);
     if (countMatch === 4) {
       //remove table border
       data.removeAttribute("class");
-      // row1.innerHTML = ``;
-      // row2.innerHTML = ``;
     }
   } else {
     home[tempId[0]].addEventListener("click", cardClicked);
@@ -144,30 +133,18 @@ function match(temp, tempId) {
 let count2 = 0;
 function cardClicked(e) {
   let cardId = e.target.id;
-  // console.log(
-  //   `${cardId} clicked, with the word ${cardsTable[cardId].innerText}`
-  // ); // cannot do cardId.innerText, maybe not exist.. shoudl be cardsTable[id]?
-
-  // console.log(`${cardsBack} Back of the cards was called `);
-  // console.log(`${shuffledCards} First display cards when Start button pressed`);
 
   // logic here.
-  // also, bug here. When 1 click, all of the card will be changed backwards, except that card
+  // also, bug here. When 1 click, all of the card will be changed backwards, except that card. resolved.
   // that text will be stored in temp
   // reset that text to cardsBack value
-  // temp will be used for if statement (or isMatch())
-  // what is isMatch?
-  // match(temp, tempId)
+  // temp will be used for if statement match(temp, tempId)
   // attention: cardsBack is an array with value already, not an element grab from html, so dont use cardsBack[id].innertext
   if (count2 < 2) {
-    // cardsTable[cardId].style = `background-color: pink;`;
 
     home[cardId].style = `background-color: pink;`;
     temp[count2] = cardsTable[cardId].innerText;
     tempId[count2] = cardId;
-    // console.log(tempId);
-    // console.log(temp);
-    // console.log(tempIdArr);
     if (tempIdArr.length === 6 && tempId.length === 2) {
       board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
 
@@ -183,8 +160,8 @@ function cardClicked(e) {
         // set any unexpected background color back to neutral
         home[i].style = `background-color: none;`;
       }
-      msg.innerText = `Congratulation! Welldone! Click restart for shuffling the cards`
-      console.log(msg)
+      msg.innerText = `Congratulation! Welldone! Click restart for shuffling the cards`;
+      console.log(msg);
     }
     cardsTable[cardId].innerText = cardsSwap[cardId];
 
@@ -201,7 +178,6 @@ function cardClicked(e) {
     }
 
     home[cardId].removeEventListener("click", cardClicked);
-    // console.log(`${countMatch} inside cardClicked`);
     count2++;
   } else {
     match(temp, tempId);
@@ -219,15 +195,9 @@ function cardClicked(e) {
 
 //eventListener for every box in the table
 function cardClickListen() {
-  // if (countMatch < 4) {
   home.forEach((card) => {
-    // if cardId === tempIdArray, remove event listener, except 0s
-    // console.log(tempIdArr.length)
-    // if (tempIdArr.length === 0) {
     card.addEventListener("click", cardClicked);
-    // }
   });
-  // }
 }
 
 restart();
