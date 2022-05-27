@@ -32,31 +32,26 @@ const shuffle = (arr) => {
 
 // Generate meaning at the back of the cards
 let cardsBack = [];
+function cardsBackLoop(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < cardE.length; j++) {
+      if (arr[i] === cardE[j]) {
+        cardsBack.push(cardV[j]);
+      }
+      if (arr[i] === cardV[j]) {
+        cardsBack.push(cardE[j]);
+      }
+    }
+  }
+}
+
 function cardsBackFill(arr) {
   // bug here, when call this function everytime, its generate a new array to add on the previous one. resolved!
   if (cardsBack === null) {
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < cardE.length; j++) {
-        if (arr[i] === cardE[j]) {
-          cardsBack.push(cardV[j]);
-        }
-        if (arr[i] === cardV[j]) {
-          cardsBack.push(cardE[j]);
-        }
-      }
-    }
+    cardsBackLoop(arr)
   } else {
     cardsBack = [];
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < cardE.length; j++) {
-        if (arr[i] === cardE[j]) {
-          cardsBack.push(cardV[j]);
-        }
-        if (arr[i] === cardV[j]) {
-          cardsBack.push(cardE[j]);
-        }
-      }
-    }
+    cardsBackLoop(arr)
   }
 }
 
@@ -74,8 +69,9 @@ function cardsFill() {
 // restart here, reset table, reset board result
 let countMatch = 0;
 let tempIdArr = [];
-let temp = [];
 let tempId = [];
+let temp = [];
+let count2 = 0;
 function restart() {
   countMatch = 0;
   tempIdArr = [];
@@ -89,6 +85,7 @@ function restart() {
   data.setAttribute("class", "table table-bordered");
 
   for (let i = 0; i < cardsTable.length; i++) {
+    //push data back to home
     home[i].append(cardsTable[i]);
     // set any unexpected background color back to neutral
     home[i].style = `background-color: none;`;
@@ -103,13 +100,15 @@ function restart() {
 }
 
 function match(temp, tempId) {
-  board.setAttribute("class", "table table-bordered");
   if (temp[0] === temp[1]) {
+    // when first match pair is found, board table border added
+    board.setAttribute("class", "table table-bordered");
+    // draw 2 columns to each board table row
     board.children[0].children[countMatch].innerHTML = `<td></td> <td></td>`;
-
+    // access td1, td2 of row (or col1, col2 of each row)
     let td1 = board.children[0].children[countMatch].children[0];
     let td2 = board.children[0].children[countMatch].children[1];
-
+    // push cardsTable at 2 locations clicked of the matched pair into 2 columns
     td1.append(cardsTable[tempId[0]]);
     td2.append(cardsTable[tempId[1]]);
     tempIdArr.push(tempId[0]);
@@ -130,7 +129,6 @@ function match(temp, tempId) {
   }
 }
 
-let count2 = 0;
 function cardClicked(e) {
   let cardId = e.target.id;
 
