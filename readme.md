@@ -9,13 +9,18 @@ As a user I want to
 
 * Memorise the words without searching dictionary for each word
 
-* Dont have enough time to put myself together for studying
-
 * Prefer playing game in my free time
 
-* Fast reaction with the word meaning I see and here
+* Fast reaction with the word meaning I see and hear
 
-* Train my brain for preventing brain decay
+* Train my brain for preventing memory lost
+
+## Future promotion:
+* Animation for card flipping
+
+* Difficulty level added to control time, or clicking times
+
+* Include database with more vocabulary
 
 ## Technologies Used:
 HTML
